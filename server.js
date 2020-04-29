@@ -1,9 +1,12 @@
 const express = require("express");
+var app = express();
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 const bodyParser = require("body-parser");
 const mysqlConnection= require("./connection");
 const QuestionsRoutes =require("./routes/questions");
 const AddquestionRoute =require("./routes/addquestion");
-var app = express();
+
 app.use(bodyParser.json());
 
 app.get("/",(req,res) => {
