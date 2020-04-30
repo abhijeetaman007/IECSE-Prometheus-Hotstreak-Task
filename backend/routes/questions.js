@@ -1,17 +1,14 @@
-const express =require("express");
-const Router =express.Router();
-const mysqlConnection= require("../connection");
+const mysqlConnection = require("../connection");
 
-Router.get("/", (req,res)=>{
-mysqlConnection.query("SELECT * from questions",(err,rows,fields)=>{
-    if(!err)
-    {
+module.exports = {
+  loadQuestions: (req, res) => {
+    mysqlConnection.query("SELECT * from questions", (err, rows, fields) => {
+      if (!err) {
+        console.log(rows);
         res.send(rows);
-    }
-    else
-    {
+      } else {
         console.log(err);
-    }
- })
-})
-module.exports= Router;
+      }
+    });
+  },
+};
